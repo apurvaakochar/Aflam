@@ -17,10 +17,13 @@ protocol MovieListBusinessLogic {
 protocol MovieListPresentationLogic {
     var numberOfRows: Int {get}
     var reloadTableViewClosure: (()->())? {get set}
+    var showAlertClosure: (()->())? {get set}
+    var alert: String? {get}
     func getCellViewModel(at index: IndexPath) -> Movie
 }
 
 class MovieListInteractor: MovieListBusinessLogic, MovieListPresentationLogic {
+    
     // MARK: - Properties
     
     /*
@@ -82,11 +85,29 @@ class MovieListInteractor: MovieListBusinessLogic, MovieListPresentationLogic {
     var numberOfRows: Int {
         return cellVM.count
     }
+    
     /*
      Closure to reload the tableView
      */
     
     var reloadTableViewClosure: (()->())?
+    
+    /*
+     Closure to show Alerts
+     */
+    
+    var showAlertClosure: (() -> ())?
+    
+    /*
+     Alert message
+     */
+    
+    var alert: String? {
+        didSet{
+            self.showAlertClosure? ()
+        }
+    }
+    
     /*
      Returns the cellViewModel for that particular IndexPath
      */
@@ -99,12 +120,18 @@ class MovieListInteractor: MovieListBusinessLogic, MovieListPresentationLogic {
   
     /*
      Make API Request with the search text and the current page
+     Also Check for interent connectivity
      */
     
     private func makeAPIRequest(at page: String) {
         let path = Path.API
         let parameters = ["api_key" : Path.API_KEY, "query" : searchText!, "page" : page]
-        ServerRequest().getRequest(path: path, parameters: parameters, completionHandler: extractData(_:))
+        if ServerRequest.isConnectedToInternet {
+            ServerRequest().getRequest(path: path, parameters: parameters, completionHandler: extractData(_:))
+        }
+        else{
+            alert = "There is no internet connectivity"
+        }
     }
     
     /*
@@ -113,6 +140,7 @@ class MovieListInteractor: MovieListBusinessLogic, MovieListPresentationLogic {
     
     private func extractData(_ apiResult: Any) {
         guard let movieData = apiResult as? [String:Any] else{
+            alert = "An unusal error occured"
             return
         }
         guard let results = movieData["results"] as? [[String:Any]] else {
@@ -127,7 +155,7 @@ class MovieListInteractor: MovieListBusinessLogic, MovieListPresentationLogic {
            
         }
         else {
-            // show Alert Controller
+            alert = String(format: "There are no movies matching %@", searchText!)
         }
     }
     
@@ -183,6 +211,7 @@ extension MovieListInteractor {
      */
     
     private func updateSearchList(_ realm: Realm, _ list: List<LastSearch>, _ newLastSearch: LastSearch) {
+ 
         if list.count == 10 {
             try! realm.write {
                 list.removeFirst()

@@ -21,9 +21,7 @@ class SearchResultsController: UITableViewController {
         initInteractor()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        interactor.getLastSearches()
-    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -47,18 +45,18 @@ class SearchResultsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        interactor.removeSuggestion(at: indexPath)
         delegate?.searchBar.text = interactor.getCellVM(at: indexPath)
         delegate?.searchBar.endEditing(true)
         dismiss(animated: false, completion: nil)
     }
-    
+
     func initInteractor() {
         interactor.reloadTableViewClosure = {[weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
         }
-        interactor.getLastSearches()
     }
 
 }

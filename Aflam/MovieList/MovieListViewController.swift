@@ -98,6 +98,12 @@ class MovieListViewController: UITableViewController{
                 self?.tableView.reloadData()
             }
         }
+        
+        interactor.showAlertClosure = {[weak self] in
+            DispatchQueue.main.async {
+                self?.showAlert((self?.interactor.alert)!)
+            }
+        }
     }
    
     // MARK: - Observe Value
@@ -156,6 +162,11 @@ class MovieListViewController: UITableViewController{
         interactor.currentPage = interactor.currentPage! + 1
     }
     
+    private func showAlert(_ alert: String){
+            let alert = UIAlertController(title: "Aflam", message: alert, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: nil))
+            present(alert, animated: true, completion: nil)
+    }
     
     // MARK: - Navigation
 
@@ -202,8 +213,14 @@ extension MovieListViewController: UISearchResultsUpdating {
      */
     func updateSearchResults(for searchController: UISearchController) {
         if let searchResultsController = searchController.searchResultsController as? SearchResultsController {
-            searchResultsController.interactor.isFiltering = isFiltering()
-            searchResultsController.interactor.filterSearchResults(by: searchController.searchBar.text!)
+            let searchResultInteractor = searchResultsController.interactor
+            searchResultInteractor.isFiltering = isFiltering()
+            if isFiltering() {
+                searchResultInteractor.filterSearchResults(by: searchController.searchBar.text!)
+            }
+            else if isActiveAndEmpty() {
+                searchResultInteractor.getLastSearches()
+            }
         }
     }
     
@@ -212,14 +229,22 @@ extension MovieListViewController: UISearchResultsUpdating {
      */
     
     private func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty()
+        return searchController.isActive && !isSearchBarEmpty()
+    }
+    
+    /*
+     check if the search controller is active but empty
+     */
+    
+    private func isActiveAndEmpty() -> Bool {
+        return searchController.isActive && isSearchBarEmpty()
     }
     
     /*
      check if the searchBar is empty
      */
     
-    private func searchBarIsEmpty() -> Bool {
+    private func isSearchBarEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
     

@@ -10,6 +10,8 @@ import Foundation
 import RealmSwift
 
 class SearchResultsInteractor{
+
+    let realm = try! Realm()
     private var cellVM = [String]() {
         didSet{
             self.reloadTableViewClosure?()
@@ -51,7 +53,6 @@ class SearchResultsInteractor{
     }
     
     func getLastSearches() {
-        let realm = try! Realm()
         if let first = realm.objects(SearchList.self).first {
             let reversedList = first.list.reversed()
             self.cellVM = reversedList.map{
@@ -59,5 +60,15 @@ class SearchResultsInteractor{
             }
         }
         
+    }
+    
+    func removeSuggestion(at indexPath: IndexPath) {
+        let index = (indexPath.row)
+        if let first = realm.objects(SearchList.self).first {
+            let list = first.list
+            try! realm.write {
+                list.remove(at: list.count - index - 1)
+            }
+        }
     }
 }

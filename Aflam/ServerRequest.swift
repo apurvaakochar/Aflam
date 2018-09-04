@@ -10,14 +10,24 @@ import Foundation
 import Alamofire
 
 class ServerRequest {
-    func getRequest(path: String, parameters: Dictionary<String,Any>, completionHandler: @escaping (Any) -> Void)
-    {
-        Alamofire.request(path, parameters: parameters).responseJSON{
+    class var isConnectedToInternet:Bool {
+        return NetworkReachabilityManager()!.isReachable
+    }
+    
+    func getRequest(path: String, parameters: Dictionary<String,Any>, completionHandler: @escaping (Any?) -> Void) {
+        Alamofire.request(path, parameters: parameters).responseJSON {
             response in
-            if let result = response.result.value{
-                completionHandler(result)
+            if response.result.isSuccess {
+                if let result = response.result.value{
+                    completionHandler(result)
+                }
+                else {
+                    completionHandler(nil)
+                }
             }
-            
+            else {
+                completionHandler(nil)
+            }
         }
     }
 }
