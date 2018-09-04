@@ -25,16 +25,18 @@ class MovieListViewController: UITableViewController{
     */
     lazy var interactor: (MovieListPresentationLogic & MovieListBusinessLogic) = MovieListInteractor()
     
-    @IBOutlet weak var searchText: UITextField!
     
     // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // removal of the extra separation lines
+        
         tableView.tableFooterView = UIView()
+        
         // initialize UISearchController
         initSearchController()
+        
         // initialize the interactor to extablish strong binding between the view controller and the interactor
         initInteractor()
     }
@@ -57,25 +59,35 @@ class MovieListViewController: UITableViewController{
         super.didReceiveMemoryWarning()
     }
   
-    @IBAction func searchButtonPressed(_ sender: Any) {
-        interactor.searchText = self.searchText.text
-    }
-    
     // MARK: - Initialization
     
     private func initSearchController() {
         // delegate to know when the searchResultsController is presented
         searchController.delegate = self
+        
         // delegate to obseve the changes in the searchBar
         searchController.searchBar.delegate = self
+        
         // UISearchResultsUpdating protocol to observe the changes when the searchBar is updated
         searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
+        if #available(iOS 9.1, *) {
+            searchController.obscuresBackgroundDuringPresentation = false
+        } else {
+            searchController.dimsBackgroundDuringPresentation = false
+        }
         searchController.searchBar.placeholder = "Enter the name of the movie"
+        
         // KVO to observer changes and show the searchResultsController when the searchBar starts editing
         searchController.searchResultsController?.view.addObserver(self, forKeyPath: "hidden", options: [], context: nil)
-        // embedding the searchController on the navigation item
-        navigationItem.searchController = searchController
+        
+        // Embedding the searchController on the navigation item for iOS 11.0 and above
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        }
+        // Embedding the searchController on the table view header for iOS 11.0 and above
+        else {
+            tableView.tableHeaderView = searchController.searchBar
+        }
         definesPresentationContext = true
     }
     
@@ -120,13 +132,16 @@ class MovieListViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // MovieDetailsCell is the custom UITableViewCell for the design
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MovieDetailsCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        
         // View Model for the cell
         let cellVM = interactor.getCellViewModel(at: indexPath)
         cell.date.text = cellVM.date
         cell.name.text = cellVM.name
-        cell.overview.text = cellVM.overview
+        
         // Kingfisher library taking care of the image retreival from the url and takes care of the caching and displaying it on the image view
         cell.poster.kf.setImage(with: cellVM.posterUrl)
+        
         // to check if the user has scrolled down to the bottom of the list
         if indexPath.row == interactor.numberOfRows - 1 {
             loadNextPage()
@@ -141,15 +156,16 @@ class MovieListViewController: UITableViewController{
         interactor.currentPage = interactor.currentPage! + 1
     }
     
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let destinationViewController = segue.destination as! MovieDetailsViewController
+        let selectedCell = sender as! MovieDetailsCell
+        let selectedIndex = tableView.indexPath(for: selectedCell)
+        destinationViewController.imageUrl = interactor.getCellViewModel(at: selectedIndex!).posterUrl
+        destinationViewController.overviewText = interactor.getCellViewModel(at: selectedIndex!).overview
     }
-    */
 
 }
 

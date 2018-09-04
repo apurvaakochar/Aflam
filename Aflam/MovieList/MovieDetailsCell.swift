@@ -10,14 +10,16 @@ import UIKit
 
 class MovieDetailsCell: UITableViewCell {
 
-    @IBOutlet weak var overview: UITextView!
+
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var date: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        mainView.layer.masksToBounds = true
+        mainView.layer.cornerRadius = 10.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
