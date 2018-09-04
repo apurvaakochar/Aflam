@@ -16,9 +16,10 @@ struct Movie {
     
     init(_ movieData: [String:Any]) {
         if let urlSuffix = movieData["poster_path"] as? String{
-            let url = String(format: "http://image.tmdb.org/t/p/w500%@", urlSuffix)
+            let url = String(format: Path.POSTER_PREFIX, urlSuffix)
             self.posterUrl = URL(string: url)
         }
+        
         self.date = movieData["release_date"] as? String
         self.overview = movieData["overview"] as? String
         self.name = movieData["title"] as? String

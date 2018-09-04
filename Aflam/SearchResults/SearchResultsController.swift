@@ -51,6 +51,7 @@ class SearchResultsController: UITableViewController {
         delegate?.searchBar.endEditing(true)
         dismiss(animated: false, completion: nil)
     }
+    
     func initInteractor() {
         interactor.reloadTableViewClosure = {[weak self] in
             DispatchQueue.main.async {

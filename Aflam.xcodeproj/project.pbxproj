@@ -11,6 +11,7 @@
 		2B2A6A65D8F337E6441851BE /* Pods_Aflam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2610A5168D0E8D7B29F603 /* Pods_Aflam.framework */; };
 		67BC9861C2AF3FA43A17EC8B /* Pods_AflamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01A4C11D8F23945789AD36E8 /* Pods_AflamTests.framework */; };
 		F07D2FE3213AC51400613773 /* MovieDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D2FE2213AC51400613773 /* MovieDetailsCell.swift */; };
+		F0D2FBD9213E3FCE0057AEE7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2FBD8213E3FCE0057AEE7 /* Constants.swift */; };
 		F0E177162137CC4400AAAED4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E177152137CC4400AAAED4 /* AppDelegate.swift */; };
 		F0E1771B2137CC4400AAAED4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0E177192137CC4400AAAED4 /* Main.storyboard */; };
 		F0E1771E2137CC4400AAAED4 /* Aflam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0E1771C2137CC4400AAAED4 /* Aflam.xcdatamodeld */; };
@@ -54,6 +55,7 @@
 		AA020FA78DB7C9C5BBD0A8B2 /* Pods-AflamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AflamUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AflamUITests/Pods-AflamUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AEB6D3DA644D9E2354630024 /* Pods-AflamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AflamTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AflamTests/Pods-AflamTests.release.xcconfig"; sourceTree = "<group>"; };
 		F07D2FE2213AC51400613773 /* MovieDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsCell.swift; sourceTree = "<group>"; };
+		F0D2FBD8213E3FCE0057AEE7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F0E177122137CC4400AAAED4 /* Aflam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aflam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E177152137CC4400AAAED4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0E1771A2137CC4400AAAED4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				F0E1771C2137CC4400AAAED4 /* Aflam.xcdatamodeld */,
 				F0E177462139343C00AAAED4 /* ServerRequest.swift */,
 				F0FF2E02213D62690002BE87 /* LastSearch.swift */,
+				F0D2FBD8213E3FCE0057AEE7 /* Constants.swift */,
 			);
 			path = Aflam;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0FF2DFF213D5DB90002BE87 /* SearchResultsController.swift in Sources */,
+				F0D2FBD9213E3FCE0057AEE7 /* Constants.swift in Sources */,
 				F0E1774D2139504500AAAED4 /* Movie.swift in Sources */,
 				F0E1771E2137CC4400AAAED4 /* Aflam.xcdatamodeld in Sources */,
 				F0FF2E03213D62690002BE87 /* LastSearch.swift in Sources */,

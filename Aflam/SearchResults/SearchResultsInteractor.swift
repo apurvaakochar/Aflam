@@ -10,27 +10,54 @@ import Foundation
 import RealmSwift
 
 class SearchResultsInteractor{
-    var cellVM = [String]() {
+    private var cellVM = [String]() {
         didSet{
             self.reloadTableViewClosure?()
         }
     }
     
+    private var filteredCellVM = [String]() {
+        didSet{
+            self.reloadTableViewClosure?()
+        }
+    }
+    
+    var isFiltering = false
+    
     var numberOfRows: Int {
-        return cellVM.count
+        if isFiltering {
+            return filteredCellVM.count
+        }
+        else{
+            return cellVM.count
+        }
     }
     
     func getCellVM(at index: IndexPath) -> String {
-        return cellVM[index.row]
+        if isFiltering {
+            return filteredCellVM[index.row]
+        }
+        else{
+            return cellVM[index.row]
+        }
     }
     
     var reloadTableViewClosure: (()->())?
     
+    func filterSearchResults(by searchText: String){
+        filteredCellVM = cellVM.filter {
+            $0.lowercased().contains(searchText.lowercased())
+        }
+    }
+    
     func getLastSearches() {
         let realm = try! Realm()
-        let lastSearches = realm.objects(LastSearch.self)
-        self.cellVM = lastSearches.map{
-            $0.name
+        if let first = realm.objects(SearchList.self).first {
+            let reversedList = first.list.reversed()
+            self.cellVM = reversedList.map{
+                $0.name
+            }
         }
+        
     }
 }

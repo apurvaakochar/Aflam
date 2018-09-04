@@ -12,3 +12,7 @@ import RealmSwift
 class LastSearch: Object {
     @objc dynamic var name = ""
 }
+
+class SearchList: Object {
+    let list = List<LastSearch>()
+}
