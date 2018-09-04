@@ -15,14 +15,19 @@ class MovieListViewController: UITableViewController{
     /*
      resuseIdentifier for the resuable Cells
      */
+    
     let reuseIdentifier = "MovieDetails"
+    
     /*
      search controller where the user types a query and the results are displayed in SearchResultsController
      */
+    
     let searchController = UISearchController(searchResultsController: SearchResultsController())
+    
     /*
     interactor (ViewModel) which takes care of the Business and Presentation Logic
     */
+    
     lazy var interactor: (MovieListPresentationLogic & MovieListBusinessLogic) = MovieListInteractor()
     
     

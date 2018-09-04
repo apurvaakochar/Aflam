@@ -191,16 +191,16 @@
 			children = (
 				F0D2FBD6213E1D9D0057AEE7 /* MovieList */,
 				F0D2FBD7213E1DB60057AEE7 /* SearchResults */,
+				F0FF2E02213D62690002BE87 /* LastSearch.swift */,
+				F0D2FBD8213E3FCE0057AEE7 /* Constants.swift */,
+				F0E177462139343C00AAAED4 /* ServerRequest.swift */,
+				F0D2FBDA213E642F0057AEE7 /* MovieDetailsViewController.swift */,
 				F0E177152137CC4400AAAED4 /* AppDelegate.swift */,
 				F0E177192137CC4400AAAED4 /* Main.storyboard */,
 				F0E1771F2137CC4500AAAED4 /* Assets.xcassets */,
 				F0E177212137CC4500AAAED4 /* LaunchScreen.storyboard */,
 				F0E177242137CC4500AAAED4 /* Info.plist */,
 				F0E1771C2137CC4400AAAED4 /* Aflam.xcdatamodeld */,
-				F0E177462139343C00AAAED4 /* ServerRequest.swift */,
-				F0FF2E02213D62690002BE87 /* LastSearch.swift */,
-				F0D2FBD8213E3FCE0057AEE7 /* Constants.swift */,
-				F0D2FBDA213E642F0057AEE7 /* MovieDetailsViewController.swift */,
 			);
 			path = Aflam;
 			sourceTree = "<group>";

@@ -9,6 +9,11 @@
 import Foundation
 import RealmSwift
 
+
+/*
+ Class to define Realm Objects
+ */
+
 class LastSearch: Object {
     @objc dynamic var name = ""
 }

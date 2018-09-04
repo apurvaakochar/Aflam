@@ -7,6 +7,9 @@
 //
 
 import Foundation
+/*
+ Constants for Networking
+*/
 
 struct Path {
     static let API = "http://api.themoviedb.org/3/search/movie"

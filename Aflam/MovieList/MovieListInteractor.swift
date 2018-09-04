@@ -80,7 +80,7 @@ class MovieListInteractor: MovieListBusinessLogic, MovieListPresentationLogic {
     
     /*
      Returns the number of rows the table view should have
-     */
+    */
     
     var numberOfRows: Int {
         return cellVM.count
@@ -88,19 +88,19 @@ class MovieListInteractor: MovieListBusinessLogic, MovieListPresentationLogic {
     
     /*
      Closure to reload the tableView
-     */
+    */
     
     var reloadTableViewClosure: (()->())?
     
     /*
      Closure to show Alerts
-     */
+    */
     
     var showAlertClosure: (() -> ())?
     
     /*
      Alert message
-     */
+    */
     
     var alert: String? {
         didSet{
@@ -110,7 +110,7 @@ class MovieListInteractor: MovieListBusinessLogic, MovieListPresentationLogic {
     
     /*
      Returns the cellViewModel for that particular IndexPath
-     */
+    */
     
     func getCellViewModel(at index: IndexPath) -> Movie {
         return cellVM[index.row]
@@ -121,7 +121,7 @@ class MovieListInteractor: MovieListBusinessLogic, MovieListPresentationLogic {
     /*
      Make API Request with the search text and the current page
      Also Check for interent connectivity
-     */
+    */
     
     private func makeAPIRequest(at page: String) {
         let path = Path.API

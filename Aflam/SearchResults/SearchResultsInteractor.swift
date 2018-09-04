@@ -9,9 +9,24 @@
 import Foundation
 import RealmSwift
 
-class SearchResultsInteractor{
+protocol SearchResultsBusinessLogic {
+    func removeSuggestion(at indexPath: IndexPath)
+}
 
-    let realm = try! Realm()
+protocol SearchResultsFilteringLogic {
+    
+}
+
+protocol SearchResultsPresentationLogic {
+    var numberOfRows: Int {get}
+    var reloadTableViewClosure: (()->())? {get set}
+    func getCellVM(at index: IndexPath) -> String
+}
+
+class SearchResultsInteractor: SearchResultsPresentationLogic{
+
+    private let realm = try! Realm()
+    
     private var cellVM = [String]() {
         didSet{
             self.reloadTableViewClosure?()
@@ -24,8 +39,8 @@ class SearchResultsInteractor{
         }
     }
     
-    var isFiltering = false
-    
+    // MARK: - SearchResultsPresentationLogic
+
     var numberOfRows: Int {
         if isFiltering {
             return filteredCellVM.count
@@ -46,11 +61,23 @@ class SearchResultsInteractor{
     
     var reloadTableViewClosure: (()->())?
     
+    // MARK: - SearchResultsFilteringLogic
+    
+    var isFiltering = false
+    
+    /*
+     Filters the suggestions as the user types on the search bar
+     */
+    
     func filterSearchResults(by searchText: String){
         filteredCellVM = cellVM.filter {
             $0.lowercased().contains(searchText.lowercased())
         }
     }
+    
+    /*
+     Retreive the last searches from the database
+     */
     
     func getLastSearches() {
         if let first = realm.objects(SearchList.self).first {
@@ -61,6 +88,12 @@ class SearchResultsInteractor{
         }
         
     }
+    
+    // MARK: - SearchResultsBusinessLogic
+    
+    /*
+     removes the chosen suggetsion from the database
+     */
     
     func removeSuggestion(at indexPath: IndexPath) {
         let index = (indexPath.row)
