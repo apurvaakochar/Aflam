@@ -64,6 +64,7 @@ This was used for Networking
 Realm was used to manage the temporary data storage
 
 **Screenshots are uploaded to the repository**
+
 **The code is thoroughly documented for any further clarifications**
 
 **Apurva Kochar**
