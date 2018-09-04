@@ -1,0 +1,6 @@
+framework module Pods_AflamUITests {
+  umbrella header "Pods-AflamUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
