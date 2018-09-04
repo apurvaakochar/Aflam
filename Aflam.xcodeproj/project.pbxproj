@@ -13,6 +13,9 @@
 		F07D2FE3213AC51400613773 /* MovieDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D2FE2213AC51400613773 /* MovieDetailsCell.swift */; };
 		F0D2FBD9213E3FCE0057AEE7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2FBD8213E3FCE0057AEE7 /* Constants.swift */; };
 		F0D2FBDB213E642F0057AEE7 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2FBDA213E642F0057AEE7 /* MovieDetailsViewController.swift */; };
+		F0D2FBDD213E93440057AEE7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D2FBDC213E93440057AEE7 /* Alamofire.framework */; };
+		F0D2FBDF213E9B550057AEE7 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D2FBDE213E9B550057AEE7 /* Realm.framework */; };
+		F0D2FBE1213E9B5D0057AEE7 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D2FBE0213E9B5D0057AEE7 /* RealmSwift.framework */; };
 		F0E177162137CC4400AAAED4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E177152137CC4400AAAED4 /* AppDelegate.swift */; };
 		F0E1771B2137CC4400AAAED4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0E177192137CC4400AAAED4 /* Main.storyboard */; };
 		F0E1771E2137CC4400AAAED4 /* Aflam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0E1771C2137CC4400AAAED4 /* Aflam.xcdatamodeld */; };
@@ -58,6 +61,9 @@
 		F07D2FE2213AC51400613773 /* MovieDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsCell.swift; sourceTree = "<group>"; };
 		F0D2FBD8213E3FCE0057AEE7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F0D2FBDA213E642F0057AEE7 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		F0D2FBDC213E93440057AEE7 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0D2FBDE213E9B550057AEE7 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0D2FBE0213E9B5D0057AEE7 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E177122137CC4400AAAED4 /* Aflam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aflam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E177152137CC4400AAAED4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0E1771A2137CC4400AAAED4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -94,6 +100,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0D2FBE1213E9B5D0057AEE7 /* RealmSwift.framework in Frameworks */,
+				F0D2FBDF213E9B550057AEE7 /* Realm.framework in Frameworks */,
+				F0D2FBDD213E93440057AEE7 /* Alamofire.framework in Frameworks */,
 				67BC9861C2AF3FA43A17EC8B /* Pods_AflamTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,6 +134,9 @@
 		E30DCC3F5B402FCDC104EAD1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F0D2FBE0213E9B5D0057AEE7 /* RealmSwift.framework */,
+				F0D2FBDE213E9B550057AEE7 /* Realm.framework */,
+				F0D2FBDC213E93440057AEE7 /* Alamofire.framework */,
 				8C2610A5168D0E8D7B29F603 /* Pods_Aflam.framework */,
 				01A4C11D8F23945789AD36E8 /* Pods_AflamTests.framework */,
 				F95DDEECDA4B870EC88F534F /* Pods_AflamUITests.framework */,
